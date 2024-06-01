@@ -289,7 +289,7 @@ cd m8c-rpi4
 ```
 32. Type the following to find if `config.ini` has been successfully generated (if config.ini isn't listed in this folder, repeat the step above):
 ```
-cd .local/share/m8c
+cd /home/patch/.local/share/m8c/
 ls
 ```
 33. Edit the `config.ini` file, so the `[graphics]` and `[gamepad]` sections look like [this](https://github.com/RowdyVoyeur/m8c-rpi4/blob/main/config.ini.sample). Check if `fullscreen` and `disable_cursor` are set to `true`.
