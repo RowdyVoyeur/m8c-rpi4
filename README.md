@@ -280,12 +280,12 @@ sudo make install
 ```
 30. Lastly, make shell scripts executable by everyone:
 ```
-sudo chmod a+x m8c*.sh
+sudo chmod +x m8c*.sh
 ```
-31. To generate the config files in `.local/share/m8c` you need to run M8C once. Connect the [Teensy 4.1](https://www.pjrc.com/store/teensy41.html) with the installed [M8 Headless Firmware](https://github.com/Dirtywave/M8HeadlessFirmware) to the Raspberry Pi 4 using a USB data cable. Wait 10 seconds to ensure it is properly connected and run the following commands (use Ctrl+C or close the Terminal window to quit M8C):
+31. To generate the config files in `.local/share/m8c` you need to run M8C once. Connect the [Teensy 4.1](https://www.pjrc.com/store/teensy41.html) with the installed [M8 Headless Firmware](https://github.com/Dirtywave/M8HeadlessFirmware) to the Raspberry Pi 4 using a USB data cable. Wait 10 seconds to ensure it is properly connected and run the following commands (use Ctrl+C to quit M8C):
 ```
 cd m8c-rpi4
-./m8c.sh
+./m8c
 ```
 32. Type the following to find if `config.ini` has been successfully generated (if config.ini isn't listed in this folder, repeat the step above):
 ```
