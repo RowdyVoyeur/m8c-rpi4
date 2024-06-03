@@ -438,18 +438,18 @@ patchbox module activate m8c-rpi4-module
   
   - Within the file, replace the following:
     ```
-		{
-			"service": "amidiminder.service",
-			"config": "amidiminder.rules"
-		}
+	{
+ 		"service": "amidiminder.service",
+    		"config": "amidiminder.rules"
+    	}
     ```
 
   - With this (be careful with spaces and commas):
     ```
-    {
-			"service": "amidiauto.service",
-			"config": "amidiauto.conf"
-		}
+    	{
+    		"service": "amidiauto.service",
+    		"config": "amidiauto.conf"
+    	}
     ```
 
 - You can customise your MIDI connections by editing the file [amidiauto.conf](https://github.com/RowdyVoyeur/m8c-rpi4-module/blob/main/amidiauto.conf). Just follow these [instructions](https://github.com/RowdyVoyeur/m8c-rpi4-module#midi-configuration);
