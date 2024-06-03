@@ -388,13 +388,16 @@ ln -s ~/m8c-rpi4/gamecontrollerdb.txt .
 ## Install Patchbox Module
 
 40. To automatically start M8C on system boot without configuring `systemd` or `crontab`, you should install the [m8c-rpi4-module](https://github.com/RowdyVoyeur/m8c-rpi4-module) with the following command:
+ 
 ```
 patchbox module install https://github.com/RowdyVoyeur/m8c-rpi4-module
 ```
-41. Activate the module by running the command below or, alternatively, type `patchbox` in Terminal, go to modules menu and select `m8c-rpi4-module`:
+
+41. Activate the module by running the command below or, alternatively, type `patchbox` in Terminal, go to modules menu and select `m8c-rpi4-module`:
 ```
 patchbox module activate m8c-rpi4-module
 ```
+
 42. The module should start between 5 and 10 seconds after activation. If it does not start, confirm that M8C is installed at `home/patch/m8c-rpi4` and the script `m8c.sh` is executable by everyone.
 
 -----------
