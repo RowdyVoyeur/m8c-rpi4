@@ -408,7 +408,7 @@ patchbox module activate m8c-rpi4-module
 
 44. Here's how to configure MIDI if you're using **Patchbox OS 2024-04-04** and [Patchbox module](https://github.com/RowdyVoyeur/m8c-rpi4-module):
 
-- After installing the [Patchbox module](https://github.com/RowdyVoyeur/m8c-rpi4-module),you can customise your MIDI connections by editing the file [amidiminder.rules](https://github.com/RowdyVoyeur/m8c-rpi4-module/blob/main/amidiminder.rules). Just follow these [instructions](https://github.com/RowdyVoyeur/m8c-rpi4-module#midi-configuration);
+- After installing the [Patchbox module](https://github.com/RowdyVoyeur/m8c-rpi4-module),you can customise your MIDI connections by editing the file [amidiminder.rules](https://github.com/RowdyVoyeur/m8c-rpi4-module/blob/main/amidiminder.rules). Just follow these [instructions](https://github.com/RowdyVoyeur/m8c-rpi4-module/tree/main#patchbox-os-2024-04-04-bookworm-arm64-debian);
 
 - This setup works exclusively with this [Patchbox module](https://github.com/RowdyVoyeur/m8c-rpi4-module). So, if you switch modules, these settings should not have any effect;
 
@@ -431,30 +431,7 @@ patchbox module activate m8c-rpi4-module
     
 45. Here's how to configure MIDI if you're using **Patchbox OS 2022-05-17** and [Patchbox module](https://github.com/RowdyVoyeur/m8c-rpi4-module):
 
-- After installing the [Patchbox module](https://github.com/RowdyVoyeur/m8c-rpi4-module), edit the file [patchbox-module.json](https://github.com/RowdyVoyeur/m8c-rpi4-module/blob/main/patchbox-module.json).
-
-  - Enter the following to edit the file:
-    ```
-    sudo nano usr/local/patchbox-modules/imported/m8c-rpi4-module/patchbox-module.json
-    ```
-  
-  - Within the file, replace the following:
-    ```
-    {
-    	"service": "amidiminder.service",
-    	"config": "amidiminder.rules"
-    }
-    ```
-
-  - With this (be careful with spaces and commas):
-    ```
-    {
-    	"service": "amidiauto.service",
-    	"config": "amidiauto.conf"
-    }
-    ```
-
-- You can customise your MIDI connections by editing the file [amidiauto.conf](https://github.com/RowdyVoyeur/m8c-rpi4-module/blob/main/amidiauto.conf). Just follow these [instructions](https://github.com/RowdyVoyeur/m8c-rpi4-module#midi-configuration);
+- You can customise your MIDI connections by editing the file [amidiauto.conf](https://github.com/RowdyVoyeur/m8c-rpi4-module/blob/main/amidiauto.conf). Just follow these [instructions](https://github.com/RowdyVoyeur/m8c-rpi4-module/tree/main#patchbox-os-2022-05-17-bullseye-debian);
 
 - This setup works exclusively with this [Patchbox module](https://github.com/RowdyVoyeur/m8c-rpi4-module). So, if you switch modules, these settings won't have any effect;
 
