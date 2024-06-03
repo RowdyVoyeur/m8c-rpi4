@@ -355,21 +355,21 @@ ln -s ~/m8c-rpi4/gamecontrollerdb.txt .
 
 - The following keys should work straight away:
 
-  | Key(s) | Alternative | Command |
-  | --- | --- | --- |
-  | Up Arrow | - | [UP] |
-  | Down Arrow | - | [DOWN] |
-  | Left Arrow | - | [LEFT] |
-  | Right Arrow | - | [RIGHT] |
-  | z | Left Shift | [SHIFT] |
-  | x | Space | [START] |
-  | a | Left Alt | [OPTION] |
-  | s | Left Ctrl | [EDIT] |
-  | Alt + Enter | - | Toggle Full Screen / Windowed |
-  | Alt + F4 | - | Quit M8C |
-  | Delete | [OPTION] + [EDIT] | Delete row |
-  | Esc | - | Toggle Keyjazz On / Off |
-  | r | [SELECT]+[START]+[OPTION]+[EDIT] | Reset Display |
+  | Key(s) | Command |
+  | --- | --- |
+  | Up Arrow | [UP] |
+  | Down Arrow | [DOWN] |
+  | Left Arrow | [LEFT] |
+  | Right Arrow | [RIGHT] |
+  | z / Left Shift | [SHIFT] |
+  | x / Space | [START] |
+  | a / Left Alt | [OPTION] |
+  | s / Left Ctrl | [EDIT] |
+  | Alt + F4 | Quit M8C |
+  | Alt + Enter | Toggle Full Screen / Windowed |
+  | r | [SELECT]+[START]+[OPTION]+[EDIT] / Reset Display |
+  | Delete | [OPTION] + [EDIT] / Delete row |
+  | Esc | Toggle Keyjazz On / Off |
 
 - You may want to edit the `[keyboard]` section of the `config.ini` file found in `.local/share/m8c` to customise your keys. In this case, use the Decimal Values listed in the first column of this [table](https://github.com/libsdl-org/sdlwiki/blob/main/SDL2/SDLScancodeLookup.mediawiki).
 
