@@ -15,8 +15,8 @@ alsa_in -j "MC101_in" -d hw:MC101,DEV=0 -r 44100 -p 64 -n 4 -c 10 &
 
 # Open audio interface between System Out and MC101 In
 # alsa_out options: -r is Sample Rate, -p is Period or Buffer Size, -n is Period, -q is Quality, -c is Channels
-# If MC101 is in Vendor Driver Mode, use -c 4. This creates posts for 4 Channels In: 1+2 Main In, bypassing controls; 3+4 Main In, allows controls
-# If MC101 is in Generic Driver Mode, use -c 2. This creates posts for 2 Channels In
+# If MC101 is in Vendor Driver Mode, use -c 4. This creates ports for 4 Channels In: 1+2 Main In, bypassing controls; 3+4 Main In, allows controls
+# If MC101 is in Generic Driver Mode, use -c 2. This creates ports for 2 Channels In
 alsa_out -j "MC101_out" -d hw:MC101,DEV=0 -r 44100 -p 64 -n 4 -c 4 &
 
 sleep 4
