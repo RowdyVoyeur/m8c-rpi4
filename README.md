@@ -355,21 +355,21 @@ ln -s ~/m8c-rpi4/gamecontrollerdb.txt .
 
 - The following keys should work straight away:
 
-| Key(s) | Alternative | Command |
-| --- | --- | --- |
-| Up Arrow | - | [UP] |
-| Down Arrow | - | [DOWN] |
-| Left Arrow | - | [LEFT] |
-| Right Arrow | - | [RIGHT] |
-| z | Left Shift | [SHIFT] |
-| x | Space | [START] |
-| a | Left Alt | [OPTION] |
-| s | Left Ctrl | [EDIT] |
-| Alt + Enter | - | Toggle Full Screen / Windowed |
-| Alt + F4 | - | Quit M8C |
-| Delete | [OPTION] + [EDIT] | Delete row |
-| Esc | - | Toggle Keyjazz On / Off |
-| r | [SELECT]+[START]+[OPTION]+[EDIT] | Reset Display |
+  | Key(s) | Alternative | Command |
+  | --- | --- | --- |
+  | Up Arrow | - | [UP] |
+  | Down Arrow | - | [DOWN] |
+  | Left Arrow | - | [LEFT] |
+  | Right Arrow | - | [RIGHT] |
+  | z | Left Shift | [SHIFT] |
+  | x | Space | [START] |
+  | a | Left Alt | [OPTION] |
+  | s | Left Ctrl | [EDIT] |
+  | Alt + Enter | - | Toggle Full Screen / Windowed |
+  | Alt + F4 | - | Quit M8C |
+  | Delete | [OPTION] + [EDIT] | Delete row |
+  | Esc | - | Toggle Keyjazz On / Off |
+  | r | [SELECT]+[START]+[OPTION]+[EDIT] | Reset Display |
 
 - You may want to edit the `[keyboard]` section of the `config.ini` file found in `.local/share/m8c` to customise your keys. In this case, use the Decimal Values listed in the first column of this [table](https://github.com/libsdl-org/sdlwiki/blob/main/SDL2/SDLScancodeLookup.mediawiki).
 
@@ -405,8 +405,7 @@ patchbox module activate m8c-rpi4-module
 
 44. Here's how to configure MIDI if you're using **Patchbox OS 2024-04-04** and [Patchbox module](https://github.com/RowdyVoyeur/m8c-rpi4-module):
 
-- After installing the [Patchbox module](https://github.com/RowdyVoyeur/m8c-rpi4-module),you can customise your MIDI connections by editing the file [amidiminder.rules
-](https://github.com/RowdyVoyeur/m8c-rpi4-module/blob/main/amidiminder.rules). Just follow these [instructions](https://github.com/RowdyVoyeur/m8c-rpi4-module#midi-configuration);
+- After installing the [Patchbox module](https://github.com/RowdyVoyeur/m8c-rpi4-module),you can customise your MIDI connections by editing the file [amidiminder.rules](https://github.com/RowdyVoyeur/m8c-rpi4-module/blob/main/amidiminder.rules). Just follow these [instructions](https://github.com/RowdyVoyeur/m8c-rpi4-module#midi-configuration);
 
 - This setup works exclusively with this [Patchbox module](https://github.com/RowdyVoyeur/m8c-rpi4-module). So, if you switch modules, these settings should not have any effect;
 
