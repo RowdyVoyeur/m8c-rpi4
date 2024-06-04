@@ -83,7 +83,7 @@ After creating the ports with either `alsa_in` / `alsa_out` or `jack_load`, you'
 
 You can then check the connections using `jack_lsp -c`.
 
-To disconnect ports you can use `jack_disconnect port1 port2`. To remove the created ports (after disconecting them), use `killall alsa_in alsa_out` if you're using `alsa_in` / `alsa_out` or `jack_load portname` if you're using `jack_load`.
+To disconnect ports you can use `jack_disconnect portname1 portname2`. To remove the created ports (after disconecting them), use `killall -s SIGINT alsa_in alsa_out` if you're using `alsa_in` / `alsa_out` or `jack_load portname` if you're using `jack_load`.
 
 ## Alsamixer Levels and Noise Suppression
 
