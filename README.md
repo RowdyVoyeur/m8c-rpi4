@@ -449,7 +449,7 @@ patchbox module activate m8c-rpi4-module
   sudo nano /etc/amidiauto.conf
   ```
 
-46. **Optional:** You can install these [MIDI tools](https://github.com/RowdyVoyeur/midi-tools) to control parameters of M8C and Patchbox OS with an [external MIDI device](https://github.com/RowdyVoyeur/midi-tools#nanokontrol), including [switching audio routings on the fly](https://github.com/RowdyVoyeur/midi-tools#audio-routing), adjusting some `Alsamixer` volume levels and several other things.
+46. **Optional:** You can install these [MIDI tools](https://github.com/RowdyVoyeur/midi-tools) to control parameters of M8C and Patchbox OS with an [external MIDI device](https://github.com/RowdyVoyeur/midi-tools/tree/main/nanoKONTROL), including [switching audio routings on the fly](https://github.com/RowdyVoyeur/midi-tools/tree/main/nanoKONTROL#audio-routing), adjusting some `Alsamixer` volume levels and several other things.
 
 -----------
 
