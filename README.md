@@ -136,7 +136,7 @@ ssh patch@patchbox.local
 
 - Select `None: Default Patchbox OS Environment` to disable modules;
 
-- Once the Setup Wizard is finished, don't leave the `Patchbox Configuration Utility` and stop Bluetooth, then disconnect Wi-Fi from default network and disable WiFi hotspot;
+- Once the Setup Wizard is finished, type `patchbox` to enter the `Patchbox Configuration Utility` and stop Bluetooth, then disconnect Wi-Fi from default network and disable WiFi hotspot;
 
 - **Only if you're using Patchbox OS 2024-04-04 (Bookworm ARM64 Debian) with a Raspberry Pi 4 Model B:** Still in the `Patchbox Configuration Utility`, go to `kernel` and select `install-rt switch te current kernel to realtime one` to enable the RT kernel;
 
