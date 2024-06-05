@@ -140,7 +140,7 @@ ssh patch@patchbox.local
 
 - **Only if you're using Patchbox OS 2024-04-04 (Bookworm ARM64 Debian) with a Raspberry Pi 4 Model B:** Still in the `Patchbox Configuration Utility`, go to `kernel` and select `install-rt switch te current kernel to realtime one` to enable the RT kernel;
 
-- Rebbot with ```sudo reboot```.
+- Reboot with ```sudo reboot```.
 
 9. Open the `config.txt` file to edit the display settings, disable Bluetooth and WiFi and improve boot time:
 ```
