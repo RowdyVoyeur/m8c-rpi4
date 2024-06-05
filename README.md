@@ -398,7 +398,7 @@ patchbox module install https://github.com/RowdyVoyeur/m8c-rpi4-module
 patchbox module activate m8c-rpi4-module
 ```
 
-42. The module should start between 5 and 10 seconds after activation. If it does not start, confirm that M8C is installed at `home/patch/m8c-rpi4` and the script `m8c.sh` is executable by everyone.
+42. The module should start between 5 and 10 seconds after activation. If it does not start, confirm that M8C is installed at `home/patch/m8c-rpi4` and the script `m8c.sh` is executable by everyone. If you are on Patchbox OS 2022-05-17 and see any errors related to amidiauto, please follow these [instructions](https://github.com/RowdyVoyeur/m8c-rpi4-module?tab=readme-ov-file#patchbox-os-2022-05-17-bullseye-debian).
 
 -----------
 
