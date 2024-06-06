@@ -43,13 +43,11 @@ alsa_in -j "M8_in" -d hw:M8,DEV=0 -r 44100 -p 64 -n 4 -c 2 &
 # alsa_out options: -r is Sample Rate, -p is Period or Buffer Size, -n is Period, -q is Quality, -c is Channels
 alsa_out -j "M8_out" -d hw:M8,DEV=0 -r 44100 -p 64 -n 4 -c 2 &
 
-sleep 1
+sleep 4
 
 # Connect audio of M8 Out to System In (This allows to hear the M8)
 jack_connect M8_in:capture_1 system:playback_1
 jack_connect M8_in:capture_2 system:playback_2
-
-sleep 1
 
 # Connect audio of USB Card Microphone or Audio Card In to M8 In (This allows to record audio onto the M8)
 # If USB Card or Audio Card In has a Mono ADC, use system:capture_1 in both lines, which creates a fake stereo
