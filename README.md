@@ -455,7 +455,7 @@ patchbox module activate m8c-rpi4-module
 
 ## Final Checks
 
-47. The [M8C script](https://github.com/RowdyVoyeur/m8c-rpi4/blob/main/m8c.sh), together with the [m8c-rpi4-module](https://github.com/RowdyVoyeur/m8c-rpi4-module) should now be able to autostart the M8C on system boot, display the M8 graphics on the screen, connect the audio ports so you can hear what you're playing and sample any instruments, connect the MIDI devices with amidiauto and shutdown the Raspberry Pi upon quitting the M8C with the button combination.
+47. The [M8C script](https://github.com/RowdyVoyeur/m8c-rpi4/blob/main/m8c.sh), together with the [m8c-rpi4-module](https://github.com/RowdyVoyeur/m8c-rpi4-module) should now be able to autostart the M8C on system boot, display the M8 graphics on the screen, connect the audio ports so you can hear what you're playing and sample any external instruments, connect the configured MIDI devices and shutdown the Raspberry Pi upon quitting the M8C with the button combination.
 
 48. If you're using a game controller, you should be able to use the following button combinations:
 
