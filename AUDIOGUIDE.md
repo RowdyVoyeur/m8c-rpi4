@@ -1,157 +1,106 @@
-# Audio setup for M8 headless 
+# Configure Audio
 
-Please note that the program includes SDL based audio routing built-in nowadays.
+## Patchbox OS Setup Wizard
 
-Experimental audio routing support can be enabled by setting the config value `"audio_enabled"` to `"true"`. The audio buffer size can also be tweaked from the config file for possible lower latencies.
-If the right audio device is not picked up by default, you can use a specific audio device by using `"audio_output_device"` config parameter.
+This fork assumes you're running [Blokas Patchbox OS](https://blokas.io/patchbox-os/). Therefore, you need to configure the default sound card using the [Setup Wizard](https://blokas.io/patchbox-os/docs/setup-wizard/). You can launch the `Setup Wizard` at any time by typing `patchbox` in Terminal.
 
-## Windows
+### USB Audio Card
 
-* Right click Sound in Taskbar
-* Open Sound Settings
-* Select M8 (or whatever your Teensy Interface is named) as Input
-* Select Device properties 
-* Select Additional Device Properties 
-* Select Listen tab 
-* Check Listen to this device and then select output of your choice (whatever source plays your speakers/headphone uses)
+- f you're using a Raspberry Pi 4 Model B with 1Gb RAM or higher and a USB sound card with [this chip](https://datasheet.lcsc.com/lcsc/1912111437_Cmedia-HS-100B_C371351.pdf) or anything better you should be able to run with a `Sampling Rate` of 48,000 Hz, a `Buffer Size` of 64 and a `Period` between 3 and 4.
 
-## Linux / Raspberry Pi
+### Pisound
 
-### Pulseaudio
+- If you're using a Raspberry Pi 4 Model B with 4Gb RAM or higher and a Pisound, I recommend using a `Sampling Rate` of 48,000 Hz, a `Buffer Size` of 64 and a `Period` of 4.
 
-If you have a desktop installation, chances are you're using Pulseaudio which has a module for making an internal loopback.
+### Notes About Latency
 
-run the following command in terminal:
+- Based on my experiments, a setup consisting of M8 (using audio in/out) and MC-101 (connected via USB, either in Vendor or Generic Driver Mode) will perform consistently well and without undesired audio artifacts using a `Sampling Rate` of 44,100 Hz, a `Buffer Size` of 64 and a `Period` of 4. This configuration should give you about 6 ms of nominal latency according to [this link](https://wiki.linuxaudio.org/wiki/list_of_jack_frame_period_settings_ideal_for_usb_interface).
 
+- This latency should not be a problem unless you want to play the instruments with a keyboard or if you connect this setup to additional gear. Both the M8 and the MC-101 have the same latency, therefore you generally won't notice it until you connect something to the audio input.
+
+## USB Connections
+
+If your USB sound card and/or your additional USB Class Compliant instrument(s) support USB 3.0, then you should connect them to the `blue` USB ports of your [Raspberry Pi 4](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/). This may help reduce audio latency and improve the overall performance of the setup.
+
+The [Teensy 4.1](https://www.pjrc.com/store/teensy41.html) only supports USB 2.0 (480 Mbit/sec). Therefore, it can be connected to the `black` USB ports of your [Raspberry Pi 4](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/).
+
+## M8C Bash Script
+
+After configuring the default sound card using the `Setup Wizard`, you will need to configure [this script](https://github.com/RowdyVoyeur/m8c-rpi4/blob/main/m8c.sh) according to your preferences. This script is responsible for connecting the audio in/out of the M8 and/or other connected instruments to the default sound card selected in the `Setup Wizard`.
+
+**Important:** You should not start the JACK server using `jackd -d alsa -d hw:M8 -r44100 -p512 &` (or a similar configuration) because this service is automatically started upon boot by [Patchbox OS](https://blokas.io/patchbox-os/docs/software-guides). You will see errors if you attempt to do this.
+
+### M8 Headless
+
+For optimal performance and to avoid resampling, the `alsa_in` / `alsa_out` options of the connected devices should match those selected in the `Setup Wizard`. So, for example, if you selected a `Sampling Rate` of 44,100 Hz, a `Buffer Size` of 64 and a `Period` of 4 in the `Setup Wizard`, then the `alsa_in` / `alsa_out` should look like this for M8:
 ```
-pacmd load-module module-loopback latency_msec=1
-```
-
-after that, you should hear audio through your default input device. If not, check Input devices in Pulseaudio Volume Control
-```
-pavucontrol
-```
-
-If the tools are missing, install pavucontrol (Debian based systems):
-```
-apt install pavucontrol
-```
-
-### JACK
-
-It is possible to route the M8 USB audio to another audio interface in Linux without a DAW, using JACK Audio Connection kit and a few other command line tools.
-
-Please note that this is not an optimal solution for getting audio from the headless M8, but as far as I know the easiest way to use the USB audio feature on Linux. The best parameters for running the applications can vary a lot depending on your configuration, and however you do it, there will be some latency.
-
-It is possible to use the integrated audio of the Pi for this, but it has quite a poor quality and likely will have sound popping issues while running this.
-
-These instructions were written for Raspberry PI OS desktop using a Raspberry Pi 3 B+, but should work for other Debian/Ubuntu flavors as well.
-
-Open Terminal and run the commands below to setup the system.
-
------
-
-#### First time setup
-
-#### Install JACK Audio Connection Kit 
-
-The jackd2 package will provide the basic tools that make the audio patching possible. 
-
-```
-sudo apt install jackd2
+alsa_in -j "M8_in" -d hw:M8,DEV=0 -r 44100 -p 64 -n 4 &
+alsa_out -j "M8_out" -d hw:M8,DEV=0 -r 44100 -p 64 -n 4 &
 ```
 
-#### Add your user to the audio group
+However, the Pisound does not support 44,100 Hz. Therefore, you'll have to use 48,000 Hz for the Pisound. Unfortunately, the Teensy only supports 44,100 Hz. This means there will be some resampling between the Pisound and the Teensy, which will use some resources. I did not find any issues with this in a Raspberry Pi 4 Model B with 4Gb RAM.
 
-This is required to get real time priority for the JACK process.
+### Roland MC-101
 
+The `alsa_in` / `alsa_out` section should look like this for the MC-101 in Generic Driver Mode or any other USB Class Compliant instrument you plan to connect (don't forget to change the device name `MC101` if you're using a different device):
 ```
-sudo usermod -a -G audio $USER
-```
-
-You need to log out completely or reboot for this change to take effect.
-
------
-
-#### Find your audio interface ALSA device id
-
-Use the ```aplay -l``` command to list the audio devices present in the system.
-
-```
-pi@raspberrypi:~ $ aplay -l
-**** List of PLAYBACK Hardware Devices ****
-card 0: Headphones [bcm2835 Headphones], device 0: bcm2835 Headphones [bcm2835 Headphones]
-  Subdevices: 8/8
-  Subdevice #0: subdevice #0
-  Subdevice #1: subdevice #1
-  Subdevice #2: subdevice #2
-  Subdevice #3: subdevice #3
-  Subdevice #4: subdevice #4
-  Subdevice #5: subdevice #5
-  Subdevice #6: subdevice #6
-  Subdevice #7: subdevice #7
-card 1: M8 [M8], device 0: USB Audio [USB Audio]
-  Subdevices: 1/1
-  Subdevice #0: subdevice #0
-card 2: vc4hdmi [vc4-hdmi], device 0: MAI PCM vc4-hdmi-hifi-0 [MAI PCM vc4-hdmi-hifi-0]
-  Subdevices: 1/1
-  Subdevice #0: subdevice #0
-card 3: v10 [AudioQuest DragonFly Red v1.0], device 0: USB Audio [USB Audio]
-  Subdevices: 1/1
-  Subdevice #0: subdevice #0
-
+alsa_in -j "MC101_in" -d hw:CARD=MC101,DEV=0 -r 44100 -p 64 -n 4 &
+alsa_out -j "MC101_out" -d hw:CARD=MC101,DEV=0 -r 44100 -p 64 -n 4 &
 ```
 
-Take note of the card number you wish to use. In my case, I want to use card  3: v10.
-
-After these steps have been taken care of, we can try to route some audio.
-
-#### Start JACK server and route audio
+If you're using the MC-101 in Vendor Driver Mode (which in my opinion, works much better than Generic Dirver Mode), then the `alsa_in` / `alsa_out` section should look like this:
 ```
-jackd -d alsa -d hw:M8 -r44100 -p512 &
+alsa_in -j "MC101_in" -d hw:MC101,DEV=0 -r 44100 -p 64 -n 4 -c 10 &
+alsa_out -j "MC101_out" -d hw:MC101,DEV=0 -r 44100 -p 64 -n 4 -c 4 &
 ```
 
-This will start the JACK server using ALSA backend driver (-d alsa), open the M8 USB audio interface (-d hw:M8) with the sample rate of 44100hz (-r44100) and buffer period size of 512 frames (-p512). The program will run in background (the & character in the end specifies this).
-If you don't see your terminal prompt, just press enter and it should appear.
+This creates ports for 10 Channels Out (1+2 Master Out; 3+4 Track 1; 5+6 Track 2; 7+8 Track 3; 9+10 Track 4) and ports for 4 Channels In (1+2 Master In, which bypasses controls; 3+4 PC In, which allows controls).
 
-Next, we will create a virtual port for routing audio to another interface. We need to specify the audio interface id where we want to output audio here.
+### Other Options
 
-```alsa_out -j m8out -d hw:<AUDIO INTERFACE NUMBER> -r 44100 &```
+If, instead of connecting a MC-101 to your setup, you're planning to connect a different USB Class Compliant instrument, then you need to replace all the instances of `MC101` in [this script](https://github.com/RowdyVoyeur/m8c-rpi4/blob/main/m8c.sh) with the Card Name of your instrument.
 
-example:
-
-```alsa_out -j m8out -d hw:3 -r 44100 &```
-
-This creates a JACK client called "m8out" (-j m8out) that performs output to ALSA audio hardware interface number 3 (-d hw:3) with a samplerate of 44100 (-r 44100). The ampersand at the end runs the program in the background.
-
-If you wish to use the Pi integrated sound board, check the number of the "bcm2835 Headphones" device. Usually it is 0.
-
-After the virtual port has been created, we need to connect it to the M8 USB Audio capture device.
+Alternatively, if you're not connecting any additional device to your setup besides the M8, then you can completely remove the following section from [this script](https://github.com/RowdyVoyeur/m8c-rpi4/blob/main/m8c.sh):
 
 ```
-jack_connect system:capture_1 m8out:playback_1
-jack_connect system:capture_2 m8out:playback_2
+# Check if the Instrument with the Card Name "MC101" is connected to the Raspberry Pi
+(...)
+fi
 ```
 
-This will connect the audio ports. You should be able to hear sounds from the M8 now.
-
-If you wish to shut down the applications, you can do that by sending a interrupt signal to the processes.
-
-```killall -s SIGINT jackd alsa_out```
-
-
-#### TL;DR
-Run these in Terminal:
-
+Instead of using `alsa_in` / `alsa_out`, you can use `jack_load` to create the ports for all in and out channels. To create all the in and out ports for the MC-101 in generic mode, enter the following (The -o and -i options refer to the number of outout and input channels, respectively):
 ```
-sudo apt install jackd2
-sudo usermod -a -G audio $USER
-sudo reboot
+jack_load -i "-d hw:MC101,DEV=0 -r 44100 -p 64 -n 4 -o 2 -i 2" MC101 audioadapter &
+```
 
+### Important Commands
+
+To find the Card Name of your instrument, connect it to the Raspberry Pi and type `aplay -l`.
+
+You can also use `cat /proc/asound/cards` to list all the audio devices and find their names or `aplay --list-devices` to list all playback devices and `arecord --list-devices` to list all the recording devices.
+
+After creating the ports with either `alsa_in` / `alsa_out` or `jack_load`, you'll need to connect them using `jack_connect portname1 portname2`.
+
+You can then check the connections using `jack_lsp -c`.
+
+To disconnect ports you can use `jack_disconnect portname1 portname2`. To remove the created ports (after disconecting them), use `killall -s SIGINT alsa_in alsa_out` if you're using `alsa_in` / `alsa_out` or `jack_load portname` if you're using `jack_load`.
+
+## Alsamixer Levels and Noise Suppression
+
+Depending on the type and/or model of audio card you are using for this project, you may need to adjust the audio input and output levels.
+
+To do that, open a terminal and type `alsamixer`. Then, using the arrows, adjust the output and input levels of your audio card.
+
+While in `alsamixer`, you should also check for any undesired noises coming from the USB sound card or any other devices. You can play with the levels to suppress the noise and/or disable `Auto Gain Control` to hear how it impacts the noise.
+
+As an example, I'm using the following audio configuration and levels:
 ```
+Card M8: PCM Mute
+Card USB Audio Device: Speaker 54<>54 (dB gain: -16); Mic Mute or 0; Capture 53 (dB gain: 12); Auto Gain Control Mute or Off
 ```
-jackd -d alsa -d hw:M8 -r44100 -p512 &
-alsa_out -j m8out -d hw:0 -r 44100 &
-jack_connect system:capture_1 m8out:playback_1
-jack_connect system:capture_2 m8out:playback_2
-```
+
+Exit `alsamixer` using escape and save your adjustments by typing `sudo alsactl store`.
+
+## References
+
+For more information, please visit [JACK Audio Connection Kit wiki](https://github.com/jackaudio/jackaudio.github.com/wiki). This [link](https://askubuntu.com/questions/1153655/making-connections-in-jack-on-the-command-line) is also very helpful.
