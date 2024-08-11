@@ -94,6 +94,11 @@ int main(int argc, char *argv[]) {
   SDL_LogSetAllPriority(SDL_LOG_PRIORITY_DEBUG);
 #endif
 
+  // Force disable mouse cursor
+  if (conf.init_disable_cursor) {
+    SDL_ShowCursor(SDL_DISABLE);
+  }
+  
   // main loop begin
   do {
     // try to init serial port
