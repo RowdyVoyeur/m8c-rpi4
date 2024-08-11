@@ -116,7 +116,7 @@ And here's a video showing the unit's innards and how the Lego buttons work (cli
 
 6. After flashing, safely remove the SD card, insert it into your Raspberry Pi and power it on.
 
-7. Connect your computer to the same Network as Raspberry Pi, open a Terminal window (or equivalent) and paste the following after boot is complete (default password: `blokaslabs`). All te steps in this tutorial are done via SSH:
+7. Connect your computer to the same Network as the Raspberry Pi (using an ethernet cable to connect the RPi to the network), open a Terminal window (or equivalent if not using macOS) and paste the following after boot is complete (default password: `blokaslabs`). All the steps in this tutorial are done via SSH:
 ```
 ssh-keygen -R patchbox.local
 ssh patch@patchbox.local
