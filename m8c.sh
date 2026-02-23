@@ -66,6 +66,10 @@ jack_connect system:capture_2 M8_out:playback_2
 # Uncomment the following line to start control-amixer on boot. More info: github.com/RowdyVoyeur/midi-tools
 # sudo /bin/bash /home/patch/midi-tools/control-amixer/control-amixer.sh &
 
+# Start Program Change to Note
+# Uncomment the following line to start pc-to-note on boot. More info: github>
+# sudo python /home/patch/midi-tools/pc-to-note/main.py &
+
 # Start M8C
 pushd /home/patch/m8c-rpi4
 ./m8c
