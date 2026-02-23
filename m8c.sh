@@ -56,11 +56,11 @@ jack_connect system:capture_2 M8_out:playback_2
 
 # Start CC to Note
 # Uncomment the line below to start cc-to-note on boot. More info: github.com/RowdyVoyeur/midi-tools
-# sudo python /home/patch/midi-tools/cc-to-note/main.py --config /home/patch/midi-tools/cc-to-note/config.json &
+# sudo python3 /home/patch/midi-tools/cc-to-note/main.py --config /home/patch/midi-tools/cc-to-note/config.json &
 
 # Start MIDI To Command
 # Uncomment the line below to start midi-to-command on boot. More info: github.com/RowdyVoyeur/midi-tools
-# sudo python home/patch/midi-tools/midi-to-command/midi2command.py home/patch/midi-tools/midi-to-command/config.cfg -p nanoKONTROL &
+# sudo python3 home/patch/midi-tools/midi-to-command/midi2command.py home/patch/midi-tools/midi-to-command/config.cfg -p nanoKONTROL &
 
 # Start Control Alsamixer
 # Uncomment the following line to start control-amixer on boot. More info: github.com/RowdyVoyeur/midi-tools
@@ -68,7 +68,7 @@ jack_connect system:capture_2 M8_out:playback_2
 
 # Start Program Change to Note
 # Uncomment the following line to start pc-to-note on boot. More info: github>
-# sudo python /home/patch/midi-tools/pc-to-note/main.py &
+# sudo python3 /home/patch/midi-tools/pc-to-note/main.py &
 
 # Start M8C
 pushd /home/patch/m8c-rpi4
