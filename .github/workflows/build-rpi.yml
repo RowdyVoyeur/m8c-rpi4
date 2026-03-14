@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-arm64:
-    name: Build for RPi OS (64-bit)
+    name: Build for RPi OS (Bookworm 64-bit)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -18,13 +18,20 @@ jobs:
         uses: uraimo/run-on-arch-action@v2
         with:
           arch: aarch64
-          distro: bullseye
+          distro: bookworm
+          # Added pkg-config and libserialport-dev
           install: |
             apt-get update
             apt-get install -y build-essential libsdl2-dev libasound2-dev libserialport-dev pkg-config
           run: |
-            # We use pkg-config to help the compiler find SDL2 and SerialPort
+            # Help the compiler find the headers
             export CFLAGS=$(pkg-config --cflags sdl2 libserialport)
             export LDFLAGS=$(pkg-config --libs sdl2 libserialport)
             make clean
             make
+
+      - name: Upload Compiled Binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: m8c-raspberry-pi-bookworm
+          path: m8c
