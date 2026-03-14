@@ -8,7 +8,14 @@ DEPS = src/serial.h src/slip.h src/command.h src/render.h src/ini.h src/config.h
 INCLUDES = $(shell pkg-config --libs sdl2 libserialport | sed 's/-mwindows//')
 
 #Set any compiler flags you want to use (e.g. -I/usr/include/somefolder `pkg-config --cflags gtk+-3.0` ), or leave blank
-local_CFLAGS = $(CFLAGS) $(shell pkg-config --cflags sdl2 libserialport) -Wall -O2 -pipe -I.
+# Optimized specifically for Raspberry Pi 4 (Cortex-A72)
+# -O3: Maximum performance optimization
+# -march/-mtune: Tells the compiler to use Pi 4 specific instructions
+# -fomit-frame-pointer: Frees up a register for faster processing
+local_CFLAGS = $(CFLAGS) $(shell pkg-config --cflags sdl2 libserialport) \
+               -Wall -O3 -pipe -I. \
+               -march=armv8-a+crc -mtune=cortex-a72 -mfpu=neon-fp-armv8 \
+               -fomit-frame-pointer
 
 #Set the compiler you are using ( gcc for C or g++ for C++ )
 CC = gcc
