@@ -14,7 +14,7 @@ INCLUDES = $(shell pkg-config --libs sdl2 libserialport | sed 's/-mwindows//')
 # -fomit-frame-pointer: Frees up a register for faster processing
 local_CFLAGS = $(CFLAGS) $(shell pkg-config --cflags sdl2 libserialport) \
                -Wall -O3 -pipe -I. \
-               -march=armv8-a+crc -mtune=cortex-a72 -mfpu=neon-fp-armv8 \
+               -march=armv8-a+crc -mtune=cortex-a72 \
                -fomit-frame-pointer
 
 #Set the compiler you are using ( gcc for C or g++ for C++ )

@@ -10,7 +10,7 @@ Note that this project is for educational and testing purposes only. If you like
 
 This is a fork of [laamaa](https://github.com/laamaa)'s fantastic cross platform [M8 tracker headless client](https://github.com/laamaa/m8c) or M8C for short and includes some modifications based on [rasprague's fork](https://github.com/rasprague/m8c-piboy). The modifications are the following: Add two special button combinations for resetting the display and quitting the program before shutting down the Raspberry Pi; Add the option to disable the mouse cursor.
 
-M8C is a client for [Dirtywave M8](https://dirtywave.com/) headless mode. The original [application](https://github.com/laamaa/m8c) should be cross-platform ready and can be built in Linux, Windows, Mac OS and Android. However, this specific fork has been tested only on Raspberry Pi 4 Model B.
+M8C is a client for [Dirtywave M8](https://dirtywave.com/) headless mode. The original [application](https://github.com/laamaa/m8c) is cross-platform and can be built for Linux, Windows, macOS and Android. However, this specific fork is optimized and tested exclusively for the Raspberry Pi 4.
 
 The main objective of this fork is to run M8C on a Raspberry Pi 4 with the best performance possible. Which means a stable setup with a good resolution and acceptable refresh rate, low audio latency and no audio artifacts such as random clicks and pops. After testing different approaches, I've settled for [Blokas Patchbox OS](https://blokas.io/patchbox-os/) and [SDL2](https://wiki.libsdl.org/SDL2/Introduction).
 
