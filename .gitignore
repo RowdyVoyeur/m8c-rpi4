@@ -1,18 +1,16 @@
-*.dylib
+# Compiled binaries and object files
 *.a
 *.o
-*.exe
-.DS_Store
 m8c
+
+# Generated source files
+font.c
+
+# Development tools and IDEs
 .vscode
 .cache/
-font.c
-build/
-compile_commands.json
 .clangd
-result*
-cmake-build-*
-.idea
-CMakeCache.txt
-CMakeFiles/
-cmake_install.cmake
+compile_commands.json
+
+# System specific
+.DS_Store
