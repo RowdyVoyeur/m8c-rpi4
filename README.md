@@ -1,6 +1,5 @@
 # M8C for Raspberry Pi 4 Model B
 
-> **Looking for the next step?**
 > If you use [M8 Headless](https://github.com/Dirtywave/M8HeadlessFirmware) with [Pisound](https://blokas.io/pisound/) or [Roland MC-101](https://www.roland.com/pt-pt/products/mc-101/), check out my newer project: [mc101-pisound](https://github.com/RowdyVoyeur/mc101-pisound). It builds on the work with audio routing, brings extended control with Korg nanoKONTROL and adds HUD feedback.
 
 ## Introduction
