@@ -1,5 +1,8 @@
 # M8C for Raspberry Pi 4 Model B
 
+> **Looking for the next step?**
+> If you use [M8 Headless](https://github.com/Dirtywave/M8HeadlessFirmware) with [Pisound](https://blokas.io/pisound/) or [Roland MC-101](https://www.roland.com/pt-pt/products/mc-101/), check out my newer project: [mc101-pisound](https://github.com/RowdyVoyeur/mc101-pisound). It builds on the work with audio routing, brings extended control with Korg nanoKONTROL and adds HUD feedback.
+
 ## Introduction
 
 The [Dirtywave M8 Tracker](https://dirtywave.com/products/m8-tracker-model-02) is a portable sequencer and synthesizer, featuring 8 tracks of assignable instruments such as FM, waveform synthesis, virtual analog, sample playback, and MIDI output. It is powered by a [Teensy](https://www.pjrc.com/teensy/) micro-controller and inspired by the Gameboy tracker [Little Sound DJ](https://www.littlesounddj.com/lsd/index.php).
